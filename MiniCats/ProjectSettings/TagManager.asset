@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - WallSlide
+  - Water
+  - Weird
+  - Ice
+  - Honey
   layers:
   - Default
   - TransparentFX
@@ -14,19 +19,19 @@ TagManager:
   - 
   - 
   - 
+  - Character
+  - Trigger
+  - Static Obstacle
   - 
   - 
   - 
+  - One Way Platform
+  - 
+  - Dynamic Obstacle
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Corner Alignment
+  - Non Collidable Dynamic Obstacle
   - 
   - 
   - 
