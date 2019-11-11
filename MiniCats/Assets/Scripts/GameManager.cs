@@ -6,13 +6,37 @@ using Newtonsoft.Json.Linq;
 using Lightbug.Kinematic2D.Implementation;
 using System.Linq;
 
+[System.Serializable]
+public class PlayerData
+{
+    public PlayerData(int id)
+    {
+        ID = id;
+        Points = 0;
+    }
+
+    public int ID;
+    public int Points;
+}
+
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     public GameObject PlayerPrefab;
     public Transform SpawnPoint;
 
+    public List<PlayerData> PlayerData = new List<PlayerData>();
+
     public Dictionary<int, CharacterHybridBrain> Players = new Dictionary<int, CharacterHybridBrain>();
     public int PlayerCount { get => AirConsole.instance.GetControllerDeviceIds().Count; }
+
+    public List<int> Queue = new List<int>();
+
+    public int CountdownTime = 10;
+
+    public Minigame[] Minigames;
+    public Minigame CurrentMinigame;
 
     bool _sessionStarted;
     bool _gameStart;
@@ -35,46 +59,79 @@ public class GameManager : MonoBehaviour
             {
                 StopGame();
             }
+
+            if(_gameStart && _playingMinigame)
+            {
+                if(CurrentMinigame != null)
+                {
+                    CurrentMinigame.Tick();
+                }
+            }
         }
     }
 
     void StartGame()
     {
         _gameStart = true;
-        _countdownTimer = 5;
+        _countdownTimer = CountdownTime;
         StartCoroutine(Countdown());
-        Debug.Log("Game Start");
+        Debug.Log("GAMESTATE: Game Start");
     }
 
     void StopGame()
     {
         _gameStart = false;
-        Debug.Log("Game Stop");
+        Debug.Log("GAMESTATE: Game Stop");
+    }
+
+    void SetMinigame(int index)
+    {
+        CurrentMinigame = Minigames[index];
+        CurrentMinigame.Initialize();
     }
 
     void StartMinigame()
     {
+        SetMinigame(0);
         _playingMinigame = true;
-        Debug.Log("Start Minigame");
+        Debug.Log("MINIGAMES: Starting: " + CurrentMinigame.ID);
     }
 
-    void StopMinigame()
+    public void StopMinigame()
     {
+        CurrentMinigame = null;
         _playingMinigame = false;
-        Debug.Log("Stop Minigame");
+        SpawnQueuedPlayers();
+        Debug.Log("MINIGAMES: Stop");
+    }
+
+    void SpawnQueuedPlayers()
+    {
+        if (Queue.Count > 0)
+        {
+            Debug.Log("Players in Queue: " + Queue.Count);
+
+            for (int i = 0; i < Queue.Count; i++)
+            {
+                AddPlayer(Queue[i]);
+                Debug.Log("Spawning player from queue: " + Queue[i]);
+            }
+
+            Queue.Clear();
+        }
     }
 
     IEnumerator Countdown()
     {
         while (_countdownTimer >= 0)
         {
-            Debug.Log("Countdown: " + _countdownTimer);
+            Debug.Log("GAMESTATE: Countdown: " + _countdownTimer + ", till a minigame starts.");
             yield return new WaitForSeconds(1);
             _countdownTimer--;        
         }
 
         StartMinigame();
-        Debug.Log("Countdown Finish");
+        Debug.Log("COUNTDOWN: Countdown Finish");
     }
 
     private void Awake()
@@ -97,6 +154,8 @@ public class GameManager : MonoBehaviour
 
         _playerCounter++;
         newPlayer.GetComponent<Player>().PlayerID = _playerCounter;
+
+        PlayerData.Add(new PlayerData(_playerCounter));
 
         Debug.Log("DEBUG: New Player Added: " + deviceID);
     }
@@ -123,12 +182,23 @@ public class GameManager : MonoBehaviour
             AddPlayer(deviceID);
         }
 
+        instance = this;
+
         _sessionStarted = true;
     }
 
     private void OnConnect(int device)
     {
-        AddPlayer(device);
+        if(_gameStart && _playingMinigame)
+        {
+            //Add to queue.
+            Queue.Add(device);
+            Debug.Log("QUEUE: Added a player to the queue: " + device);
+        }
+        else
+        {
+            AddPlayer(device);
+        }     
     }
 
     private void OnDisconnect(int device)
