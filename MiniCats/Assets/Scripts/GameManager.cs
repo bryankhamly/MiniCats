@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
         Players.Add(deviceID, newPlayer.GetComponent<CharacterHybridBrain>());
 
         _playerCounter++;
-        newPlayer.GetComponent<Player>().PlayerID = _playerCounter;
+        newPlayer.GetComponent<Player>().SetPlayerID(_playerCounter);
 
         PlayerData.Add(new PlayerData(_playerCounter));
 

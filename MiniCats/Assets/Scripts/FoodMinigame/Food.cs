@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public FoodMinigame _foodMinigame;
 
-    // Update is called once per frame
-    void Update()
+    public int PointValue = 5;
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.collider.GetComponentInParent<Player>())
+        {
+            int id = collision.collider.GetComponentInParent<Player>().PlayerID;
+            _foodMinigame.GivePoints(id, PointValue);
+            _foodMinigame.MinigameObjects.Remove(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

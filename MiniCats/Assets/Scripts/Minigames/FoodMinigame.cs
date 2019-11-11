@@ -14,6 +14,8 @@ public class FoodPlayerData
 public class FoodMinigame : Minigame
 {
     public GameObject FoodSpawner;
+    public Vector3 FoodSpawnerLocation;
+
     public List<GameObject> FoodPrefabs;
     public List<FoodPlayerData> PlayerData;
     public int PointsNeededToWin = 10;
@@ -22,6 +24,10 @@ public class FoodMinigame : Minigame
     public override void Initialize()
     {
         base.Initialize();
+
+        FoodSpawner foodSpawner = Instantiate(FoodSpawner, FoodSpawnerLocation, Quaternion.identity).GetComponent<FoodSpawner>();
+
+        MinigameObjects.Add(foodSpawner.gameObject);
 
         PlayerData = new List<FoodPlayerData>();
 
@@ -34,6 +40,10 @@ public class FoodMinigame : Minigame
             newData.PlayerName = "Player " + i;
             PlayerData.Add(newData);
         }
+
+        foodSpawner.start = true;
+
+        Debug.Log("FOODMINIGAME: INIT");
     }
 
     public override void Tick()
@@ -64,5 +74,6 @@ public class FoodMinigame : Minigame
     {
         PlayerData[playerID].Points += value;
         CheckWinCondition();
+        Debug.Log("FOODMINIGAME:" + value + " POINTS GIVEN TO " + playerID);
     }
 }

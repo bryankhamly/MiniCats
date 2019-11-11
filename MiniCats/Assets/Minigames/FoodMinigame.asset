@@ -17,6 +17,7 @@ MonoBehaviour:
   MinigameObjects: []
   FoodSpawner: {fileID: 4897339964048592589, guid: 3e10f29d5929d25419082473cdfd697b,
     type: 3}
+  FoodSpawnerLocation: {x: 0, y: 10, z: 0}
   FoodPrefabs:
   - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
   PlayerData:

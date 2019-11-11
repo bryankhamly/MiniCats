@@ -27,7 +27,6 @@ public class FoodSpawner : MonoBehaviour
                 SpawnFood();
             }
         }
-
     }
 
     void SpawnFood()

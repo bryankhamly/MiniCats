@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: 0
-  _minX: -5
-  _maxX: 5
+  _minX: -15
+  _maxX: 15
   _minSpawnTime: 2
   _maxSpawnTime: 5
