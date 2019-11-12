@@ -12,5 +12,6 @@ public class Player : MonoBehaviour
     {
         PlayerID = id;
         NameTag.text = "P" + PlayerID;
+        GetComponentInChildren<SpriteRenderer>().sortingOrder = id;
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
 using Lightbug.Kinematic2D.Implementation;
-using System.Linq;
 
 [System.Serializable]
 public class PlayerData
