@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class FoodPlayerData
@@ -18,13 +19,22 @@ public class FoodMinigame : Minigame
 
     public List<GameObject> FoodPrefabs;
     public List<FoodPlayerData> PlayerData;
-    public int PointsNeededToWin = 10;
+   
     public int PointsRewardedForWinner = 25;
+
+    public float GameTime = 45;
+    float _gameTimer;
+
+    int highscore;
 
     public override void Initialize()
     {
         base.Initialize();
+        FoodInit();
+    }
 
+    void FoodInit()
+    {
         FoodSpawner foodSpawner = Instantiate(FoodSpawner, FoodSpawnerLocation, Quaternion.identity).GetComponent<FoodSpawner>();
 
         MinigameObjects.Add(foodSpawner.gameObject);
@@ -41,6 +51,8 @@ public class FoodMinigame : Minigame
             PlayerData.Add(newData);
         }
 
+        _gameTimer = GameTime;
+
         foodSpawner.start = true;
 
         Debug.Log("FOODMINIGAME: INIT");
@@ -49,31 +61,56 @@ public class FoodMinigame : Minigame
     public override void Tick()
     {
         //Food Spawning Logic
-        Debug.Log("FOODMINIGAME: TICK");
-    }
 
-    public override void CheckWinCondition()
-    {
-        foreach (var item in PlayerData)
+        if(_playing)
         {
-            if(item.Points == PointsNeededToWin)
+            _gameTimer -= Time.deltaTime;
+
+            if (_gameTimer <= 0)
             {
-                EndMinigame(item.PlayerID);
+                int winner = -1;
+                CheckWinCondition(out winner);
+                EndMinigame(winner, PointsRewardedForWinner);
             }
+
+            Debug.Log("FOODMINIGAME: TICK");
         }
     }
 
-    public override void EndMinigame(int playerID)
+    public override void CheckWinCondition(out int winnner)
     {
-        Debug.Log("Player " + playerID + " won, and was rewarded: " + PointsRewardedForWinner + " points!");
-        GameManager.instance.PlayerData[playerID].Points += PointsRewardedForWinner;
-        base.EndMinigame(playerID);
+        int max = 0;
+        int id = -1;
+
+        foreach (var player in PlayerData)
+        {
+            int pt = player.Points;
+
+            if(pt > max)
+            {
+                max = pt;
+                id = player.PlayerID;
+            }
+        }
+
+        highscore = max;
+
+        winnner = id;
+    }
+
+    public override void EndMinigame(int winner, int reward)
+    {
+        base.EndMinigame(winner, reward);       
+
+        if(winner != -1)
+        {
+            Debug.Log("Player " + winner + " won with " + highscore + " points!" + ", and has been rewarded " + reward + " points!");
+        }
     }
 
     public void GivePoints(int playerID, int value)
     {
         PlayerData[playerID].Points += value;
-        CheckWinCondition();
-        Debug.Log("FOODMINIGAME:" + value + " POINTS GIVEN TO " + playerID);
+        Debug.Log("FOODMINIGAME:" + value + " POINTS GIVEN TO PLAYER" + playerID);
     }
 }

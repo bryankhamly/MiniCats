@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057b5761649dbfb4cbe1c6aa1678c9f3, type: 3}
   m_Name: FoodMinigame
   m_EditorClassIdentifier: 
-  ID: Catch the Food
-  Description: Catch food, and get points
-  MinigameObjects: []
+  ID: Food Game
+  Description: Whoever gets the most food in 45 seconds is the winner!
+  StartTime: 5
+  MinigameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
   FoodSpawner: {fileID: 4897339964048592589, guid: 3e10f29d5929d25419082473cdfd697b,
     type: 3}
   FoodSpawnerLocation: {x: 0, y: 10, z: 0}
@@ -27,5 +30,5 @@ MonoBehaviour:
   - PlayerName: Player 1
     PlayerID: 1
     Points: 0
-  PointsNeededToWin: 10
   PointsRewardedForWinner: 25
+  GameTime: 10

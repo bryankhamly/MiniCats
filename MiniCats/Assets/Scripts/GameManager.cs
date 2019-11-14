@@ -4,6 +4,7 @@ using UnityEngine;
 using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
 using Lightbug.Kinematic2D.Implementation;
+using TMPro;
 
 [System.Serializable]
 public class PlayerData
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject PlayerPrefab;
+    public GameObject[] Cats;
     public Transform SpawnPoint;
 
     public List<PlayerData> PlayerData = new List<PlayerData>();
@@ -36,6 +37,15 @@ public class GameManager : MonoBehaviour
 
     public Minigame[] Minigames;
     public Minigame CurrentMinigame;
+
+    //UI
+    public CanvasGroup StartCanvas;
+    public CanvasGroup MinigameCountdown;
+    public TextMeshProUGUI TimerText;
+
+    public TextMeshProUGUI MinigameTitle;
+    public TextMeshProUGUI MinigameDesc;
+    public TextMeshProUGUI MinigameTimer;
 
     bool _sessionStarted;
     bool _gameStart;
@@ -86,13 +96,14 @@ public class GameManager : MonoBehaviour
     void SetMinigame(int index)
     {
         CurrentMinigame = Minigames[index];
-        CurrentMinigame.Initialize();
+        MinigameTitle.text = CurrentMinigame.ID;
+        MinigameDesc.text = CurrentMinigame.Description;
     }
 
     void StartMinigame()
-    {
-        SetMinigame(0);
+    {   
         _playingMinigame = true;
+        CurrentMinigame.Initialize();
         Debug.Log("MINIGAMES: Starting: " + CurrentMinigame.ID);
     }
 
@@ -124,13 +135,36 @@ public class GameManager : MonoBehaviour
     {
         while (_countdownTimer >= 0)
         {
-            Debug.Log("GAMESTATE: Countdown: " + _countdownTimer + ", till a minigame starts.");
+            Debug.Log("GAMESTATE: Countdown: " + _countdownTimer + ", till the game starts.");
+            TimerText.text = "Game starts in " + _countdownTimer + " seconds...";
             yield return new WaitForSeconds(1);
-            _countdownTimer--;        
+            _countdownTimer--;          
         }
 
-        StartMinigame();
+        StartCanvas.alpha = 0;
+        SetMinigame(0);
+
+        StartCoroutine(CountdownToMinigame());
+
         Debug.Log("COUNTDOWN: Countdown Finish");
+    }
+
+    IEnumerator CountdownToMinigame()
+    {
+        MinigameCountdown.alpha = 1;
+        _countdownTimer = CurrentMinigame.StartTime;
+
+        while (_countdownTimer >= 0)
+        {
+            Debug.Log("GAMESTATE: Countdown: " + _countdownTimer + ", till a minigame starts.");
+            MinigameTimer.text = CurrentMinigame.ID + " starts in " + _countdownTimer + " seconds...";
+            yield return new WaitForSeconds(1);
+            _countdownTimer--;
+        }
+
+        MinigameCountdown.alpha = 0;
+        StartMinigame();
+        Debug.Log("COUNTDOWN: Countdown to Minigame Finish");
     }
 
     private void Awake()
@@ -148,10 +182,22 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        GameObject newPlayer = Instantiate(PlayerPrefab, SpawnPoint.position, transform.rotation) as GameObject;
+        _playerCounter++;
+
+        int catToUse = _playerCounter;
+
+        //If 5th player: 4 >= 4 cats (length) = 0
+        //If 6th player: 5 >= 4 cats = 1
+        //catToUse needs to be 0, so catToUse - length
+
+        if(catToUse >= Cats.Length)
+        {
+            catToUse = catToUse - Cats.Length;
+        }
+
+        GameObject newPlayer = Instantiate(Cats[catToUse], SpawnPoint.position, transform.rotation) as GameObject;
         Players.Add(deviceID, newPlayer.GetComponent<CharacterHybridBrain>());
 
-        _playerCounter++;
         newPlayer.GetComponent<Player>().SetPlayerID(_playerCounter);
 
         PlayerData.Add(new PlayerData(_playerCounter));
