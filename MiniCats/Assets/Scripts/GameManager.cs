@@ -33,10 +33,14 @@ public class GameManager : MonoBehaviour
 
     public List<int> Queue = new List<int>();
 
+    public List<Player> PlayerList = new List<Player>();
+
     public int CountdownTime = 10;
+    public int RoundsToPlay = 5;
 
     public Minigame[] Minigames;
     public Minigame CurrentMinigame;
+    int _minigameIndex = -1;
 
     //UI
     public CanvasGroup StartCanvas;
@@ -47,6 +51,15 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI MinigameDesc;
     public TextMeshProUGUI MinigameTimer;
 
+    public CanvasGroup FoodCanvas;
+
+    public CanvasGroup QueueCanvas;
+    public TextMeshProUGUI QueueText;
+
+    public CanvasGroup WinnerCanvas;
+    public TextMeshProUGUI WinnerText;
+    public TextMeshProUGUI NextGameText;
+
     bool _sessionStarted;
     bool _gameStart;
 
@@ -54,6 +67,11 @@ public class GameManager : MonoBehaviour
 
     int _playerCounter = -1;
     int _countdownTimer;
+
+    private void Start()
+    {
+        
+    }
 
     private void Update()
     {
@@ -76,6 +94,14 @@ public class GameManager : MonoBehaviour
                     CurrentMinigame.Tick();
                 }
             }
+        }
+    }
+
+    public void ShowNametags(bool yes)
+    {
+        foreach (var item in PlayerList)
+        {
+            item.ShowNametag(yes);
         }
     }
 
@@ -115,6 +141,20 @@ public class GameManager : MonoBehaviour
         Debug.Log("MINIGAMES: Stop");
     }
 
+    public void ShowWinner(bool show, int winnerID = -1)
+    {
+        if(show)
+        {
+            WinnerCanvas.alpha = 1;
+            WinnerText.text = "Winner: Player " + winnerID;
+            NextGameText.text = "Next minigame: " + Minigames[_minigameIndex + 1].ID + " starts in {0} seconds...";    
+        }
+        else
+        {
+            WinnerCanvas.alpha = 0;
+        }
+    }
+
     void SpawnQueuedPlayers()
     {
         if (Queue.Count > 0)
@@ -128,6 +168,7 @@ public class GameManager : MonoBehaviour
             }
 
             Queue.Clear();
+            QueueCanvas.alpha = 0;
         }
     }
 
@@ -142,7 +183,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartCanvas.alpha = 0;
-        SetMinigame(0);
+        SetMinigame(_minigameIndex + 1);
 
         StartCoroutine(CountdownToMinigame());
 
@@ -200,6 +241,8 @@ public class GameManager : MonoBehaviour
 
         newPlayer.GetComponent<Player>().SetPlayerID(_playerCounter);
 
+        PlayerList.Add(newPlayer.GetComponent<Player>());
+
         PlayerData.Add(new PlayerData(_playerCounter));
 
         Debug.Log("DEBUG: New Player Added: " + deviceID);
@@ -211,6 +254,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject player = Players[deviceID].gameObject;
             Players.Remove(deviceID);
+            PlayerList.Remove(player.GetComponent<Player>());
             Destroy(player);
 
             _playerCounter--;
@@ -230,6 +274,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         _sessionStarted = true;
+        StartCanvas.alpha = 1;
     }
 
     private void OnConnect(int device)
@@ -239,6 +284,8 @@ public class GameManager : MonoBehaviour
             //Add to queue.
             Queue.Add(device);
             Debug.Log("QUEUE: Added a player to the queue: " + device);
+            QueueText.text = "Players in Queue: " + Queue.Count;
+            QueueCanvas.alpha = 1;
         }
         else
         {

@@ -11,7 +11,19 @@ public class Player : MonoBehaviour
     public void SetPlayerID(int id)
     {
         PlayerID = id;
-        NameTag.text = "";
+        NameTag.text = id.ToString();
         GetComponentInChildren<SpriteRenderer>().sortingOrder = id;
+    }
+
+    public void ShowNametag(bool yes)
+    {
+        if(yes)
+        {
+            NameTag.gameObject.SetActive(true);
+        }
+        else
+        {
+            NameTag.gameObject.SetActive(false);
+        }
     }
 }

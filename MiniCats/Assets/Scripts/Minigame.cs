@@ -19,6 +19,8 @@ public abstract class Minigame : ScriptableObject
     {
         MinigameObjects = new List<GameObject>();
         _playing = true;
+        GameManager.instance.ShowWinner(false);
+        GameManager.instance.ShowNametags(false);
     }
 
     public virtual void EndMinigame(int winner, int reward)
@@ -36,6 +38,8 @@ public abstract class Minigame : ScriptableObject
         }
         
         GameManager.instance.StopMinigame();
+        GameManager.instance.ShowWinner(true, winner);
+        GameManager.instance.ShowNametags(true);
         Debug.Log("Minigame End: " + ID);
     }
 

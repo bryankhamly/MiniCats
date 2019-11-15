@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 [System.Serializable]
 public class FoodPlayerData
@@ -27,9 +28,13 @@ public class FoodMinigame : Minigame
 
     int highscore;
 
+    //UI
+    TextMeshProUGUI FoodTimer;
+
     public override void Initialize()
     {
         base.Initialize();
+        FoodTimer = GameObject.Find("FoodTimer").GetComponent<TextMeshProUGUI>();
         FoodInit();
     }
 
@@ -55,6 +60,8 @@ public class FoodMinigame : Minigame
 
         foodSpawner.start = true;
 
+        GameManager.instance.FoodCanvas.alpha = 1;
+
         Debug.Log("FOODMINIGAME: INIT");
     }
 
@@ -65,6 +72,7 @@ public class FoodMinigame : Minigame
         if(_playing)
         {
             _gameTimer -= Time.deltaTime;
+            FoodTimer.text = ((int)_gameTimer).ToString();
 
             if (_gameTimer <= 0)
             {
@@ -106,6 +114,8 @@ public class FoodMinigame : Minigame
         {
             Debug.Log("Player " + winner + " won with " + highscore + " points!" + ", and has been rewarded " + reward + " points!");
         }
+
+        GameManager.instance.FoodCanvas.alpha = 0;
     }
 
     public void GivePoints(int playerID, int value)
