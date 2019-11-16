@@ -40,6 +40,8 @@ public abstract class Minigame : ScriptableObject
         GameManager.instance.StopMinigame();
         GameManager.instance.ShowWinner(true, winner);
         GameManager.instance.ShowNametags(true);
+        GameManager.instance.ReduceRounds();
+
         Debug.Log("Minigame End: " + ID);
     }
 

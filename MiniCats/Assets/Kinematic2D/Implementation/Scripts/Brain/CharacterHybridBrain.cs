@@ -130,22 +130,22 @@ namespace Lightbug.Kinematic2D.Implementation
         {
             switch(input)
             {
-                case "right":
+                case "rightTrue":
                     horizontal = 1;
                     break;
-                case "right-up":
+                case "rightFalse":
                     horizontal = 0;
                     break;
-                case "left":
+                case "leftTrue":
                     horizontal = -1;
                     break;
-                case "left-up":
+                case "leftFalse":
                     horizontal = 0;
                     break;
-                case "jump":
+                case "aTrue":
                     characterAction.jumpPressed = true;
                     break;
-                case "jump-up":
+                case "aFalse":
                     characterAction.jumpReleased = true;
                     break;
             }

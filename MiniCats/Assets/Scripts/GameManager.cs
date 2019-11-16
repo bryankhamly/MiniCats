@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public bool logMessages = false;
+
     public GameObject[] Cats;
     public Transform SpawnPoint;
 
@@ -37,6 +39,9 @@ public class GameManager : MonoBehaviour
 
     public int CountdownTime = 10;
     public int RoundsToPlay = 5;
+
+    [HideInInspector]
+    public int RoundsLeft = 0;
 
     public Minigame[] Minigames;
     public Minigame CurrentMinigame;
@@ -68,26 +73,23 @@ public class GameManager : MonoBehaviour
     int _playerCounter = -1;
     int _countdownTimer;
 
-    private void Start()
-    {
-        
-    }
+    bool gameover;
 
     private void Update()
     {
         if (_sessionStarted)
         {
-            if (!_gameStart && PlayerCount >= 2 && !_playingMinigame)
+            if (!_gameStart && PlayerCount >= 2 && !_playingMinigame && !gameover)
             {
                 StartGame();
             }
 
-            if (_gameStart && PlayerCount < 2)
+            if (_gameStart && PlayerCount < 2 && !gameover)
             {
                 StopGame();
             }
 
-            if(_gameStart && _playingMinigame)
+            if(_gameStart && _playingMinigame && !gameover)
             {
                 if(CurrentMinigame != null)
                 {
@@ -105,9 +107,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ReduceRounds()
+    {
+        RoundsLeft--;
+
+        if(RoundsLeft <= 0)
+        {
+            //End the game. Show Winner, THE END
+            gameover = true;
+            StopGame();
+            //Show Final Winner
+        }
+    }
+
     void StartGame()
     {
         _gameStart = true;
+        RoundsLeft = RoundsToPlay;
         _countdownTimer = CountdownTime;
         StartCoroutine(Countdown());
         Debug.Log("GAMESTATE: Game Start");
@@ -302,7 +318,15 @@ public class GameManager : MonoBehaviour
     {
         if (Players.ContainsKey(from) && data["action"] != null)
         {
-            Players[from].ButtonInput(data["action"].ToString());
+            if(data["action"]["input"] != null)
+            {
+                var key = data["action"]["input"]["key"];
+                var pressed = data["action"]["input"]["pressed"];
+
+                string input = key.ToString() + pressed.ToString();
+
+                Players[from].ButtonInput(input);
+            }
         }
     }
 
