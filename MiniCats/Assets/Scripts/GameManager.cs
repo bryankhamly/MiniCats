@@ -5,6 +5,7 @@ using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
 using Lightbug.Kinematic2D.Implementation;
 using TMPro;
+using Lightbug.Kinematic2D.Core;
 
 [System.Serializable]
 public class PlayerData
@@ -39,8 +40,6 @@ public class GameManager : MonoBehaviour
 
     public int CountdownTime = 10;
     public int RoundsToPlay = 5;
-
-    [HideInInspector]
     public int RoundsLeft = 0;
 
     public Minigame[] Minigames;
@@ -63,7 +62,11 @@ public class GameManager : MonoBehaviour
 
     public CanvasGroup WinnerCanvas;
     public TextMeshProUGUI WinnerText;
-    public TextMeshProUGUI NextGameText;
+
+    public CanvasGroup FinalWinner;
+    public TextMeshProUGUI FinalWinnerText;
+
+    public GameObject LobbyMap;
 
     bool _sessionStarted;
     bool _gameStart;
@@ -79,17 +82,20 @@ public class GameManager : MonoBehaviour
     {
         if (_sessionStarted)
         {
-            if (!_gameStart && PlayerCount >= 2 && !_playingMinigame && !gameover)
+            if (gameover)
+                return;
+
+            if (!_gameStart && PlayerCount >= 2 && !_playingMinigame)
             {
                 StartGame();
             }
 
-            if (_gameStart && PlayerCount < 2 && !gameover)
+            if (_gameStart && PlayerCount < 2)
             {
                 StopGame();
             }
 
-            if(_gameStart && _playingMinigame && !gameover)
+            if(_gameStart && _playingMinigame)
             {
                 if(CurrentMinigame != null)
                 {
@@ -107,16 +113,47 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RespawnPlayers()
+    {
+        foreach (var item in PlayerList)
+        {
+            item.gameObject.GetComponent<CharacterBody2D>().MoveRigidbody(Vector3.zero);
+        }
+    }
+
+    void ShowFinalWinner()
+    {
+        //End the game. Show Winner, THE END
+        gameover = true;
+        StopGame();
+
+        int winnerID = -1;
+        int max = 0;
+
+        foreach (var item in PlayerData)
+        {
+            if(item.Points > max)
+            {
+                max = item.Points;
+                winnerID = item.ID;
+            }
+        }
+
+        FinalWinner.alpha = 1;
+        FinalWinnerText.text = "Final Winner: Player " + winnerID;
+
+        Debug.Log("FINAL WINNER: PLAYER " + winnerID);
+    }
+
     public void ReduceRounds()
     {
         RoundsLeft--;
 
         if(RoundsLeft <= 0)
         {
-            //End the game. Show Winner, THE END
-            gameover = true;
-            StopGame();
-            //Show Final Winner
+            ShowFinalWinner();
+            StopAllCoroutines();
+            return;
         }
     }
 
@@ -135,15 +172,31 @@ public class GameManager : MonoBehaviour
         Debug.Log("GAMESTATE: Game Stop");
     }
 
+    public void ShowLobbyMap(bool XD)
+    {
+        if(XD)
+        {
+            LobbyMap.SetActive(true);
+        }
+        else
+        {
+            LobbyMap.SetActive(false);
+        }
+    }
+
     void SetMinigame(int index)
     {
+        if (gameover)
+            return;
         CurrentMinigame = Minigames[index];
         MinigameTitle.text = CurrentMinigame.ID;
         MinigameDesc.text = CurrentMinigame.Description;
     }
 
     void StartMinigame()
-    {   
+    {
+        if (gameover)
+            return;
         _playingMinigame = true;
         CurrentMinigame.Initialize();
         Debug.Log("MINIGAMES: Starting: " + CurrentMinigame.ID);
@@ -154,6 +207,12 @@ public class GameManager : MonoBehaviour
         CurrentMinigame = null;
         _playingMinigame = false;
         SpawnQueuedPlayers();
+        _countdownTimer = 2; //time between rounds
+        _minigameIndex++;
+        if(!gameover)
+        {
+            StartCoroutine(Countdown());
+        }
         Debug.Log("MINIGAMES: Stop");
     }
 
@@ -162,8 +221,7 @@ public class GameManager : MonoBehaviour
         if(show)
         {
             WinnerCanvas.alpha = 1;
-            WinnerText.text = "Winner: Player " + winnerID;
-            NextGameText.text = "Next minigame: " + Minigames[_minigameIndex + 1].ID + " starts in {0} seconds...";    
+            WinnerText.text = "Last Minigame Winner: Player " + winnerID; 
         }
         else
         {
@@ -190,6 +248,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Countdown()
     {
+        if (gameover)
+            StopAllCoroutines();
+
         while (_countdownTimer >= 0)
         {
             Debug.Log("GAMESTATE: Countdown: " + _countdownTimer + ", till the game starts.");
@@ -208,6 +269,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator CountdownToMinigame()
     {
+        if (gameover)
+            StopAllCoroutines();
+
         MinigameCountdown.alpha = 1;
         _countdownTimer = CurrentMinigame.StartTime;
 

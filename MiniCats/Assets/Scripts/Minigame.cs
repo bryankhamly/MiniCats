@@ -6,6 +6,7 @@ public abstract class Minigame : ScriptableObject
 {
     public string ID;
     public string Description;
+    public GameObject Map;
     public int StartTime = 5;
 
     public List<GameObject> MinigameObjects;
@@ -21,11 +22,19 @@ public abstract class Minigame : ScriptableObject
         _playing = true;
         GameManager.instance.ShowWinner(false);
         GameManager.instance.ShowNametags(false);
+
+        GameManager.instance.ShowLobbyMap(false);
+        GameObject map = Instantiate(Map, Vector2.zero, Quaternion.identity);
+        MinigameObjects.Add(map);
+
+        GameManager.instance.RespawnPlayers();
     }
 
     public virtual void EndMinigame(int winner, int reward)
     {
         _playing = false;
+
+        GameManager.instance.ShowLobbyMap(true);
         CleanUpMinigameObjects();
 
         if(winner == -1)

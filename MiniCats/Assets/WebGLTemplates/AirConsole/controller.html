@@ -117,8 +117,7 @@
 </head>
 
 <body>
-    <div class="example-container">
-        
+    <div class="example-container">      
         <div id="dpad" class="dpad">
             <div class="dpad-relative">
                 <div class="dpad-instructions">DPAD</div>
@@ -166,42 +165,6 @@
                         "touch": false,
                         "had_direction": had_direction
                     }
-                });
-            }
-        });
-        new Button("start", {
-            "down": function () {
-                airconsole.message(AirConsole.SCREEN, {
-                    "start": "down"
-                });
-            },
-            "up": function () {
-                airconsole.message(AirConsole.SCREEN, {
-                    "start": "up"
-                });
-            }
-        });
-        new Button("select", {
-            "down": function () {
-                airconsole.message(AirConsole.SCREEN, {
-                    "select": "down"
-                });
-            },
-            "up": function () {
-                airconsole.message(AirConsole.SCREEN, {
-                    "select": "up"
-                });
-            }
-        });
-        new Button("reset", {
-            "down": function () {
-                airconsole.message(AirConsole.SCREEN, {
-                    "reset": "down"
-                });
-            },
-            "up": function () {
-                airconsole.message(AirConsole.SCREEN, {
-                    "reset": "up"
                 });
             }
         });

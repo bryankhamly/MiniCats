@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            NameTag.gameObject.SetActive(false);
+            NameTag.gameObject.SetActive(true);
         }
     }
 }
