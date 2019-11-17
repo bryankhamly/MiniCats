@@ -133,6 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: -1
   NameTag: {fileID: 3603753544829422784}
+  PlaneObject: {fileID: 6191520358909711184, guid: b8bacabeab5019e42bf2a849ae51f6b2,
+    type: 3}
+  PlayerPlane: {fileID: 0}
 --- !u!114 &2091483713563127603
 MonoBehaviour:
   m_ObjectHideFlags: 0

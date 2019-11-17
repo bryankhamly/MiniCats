@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public List<PlayerData> PlayerData = new List<PlayerData>();
 
-    public Dictionary<int, CharacterHybridBrain> Players = new Dictionary<int, CharacterHybridBrain>();
+    public Dictionary<int, Player> Players = new Dictionary<int, Player>();
     public int PlayerCount { get => AirConsole.instance.GetControllerDeviceIds().Count; }
 
     public List<int> Queue = new List<int>();
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI MinigameTimer;
 
     public CanvasGroup FoodCanvas;
+    public CanvasGroup PlaneCanvas;
 
     public CanvasGroup QueueCanvas;
     public TextMeshProUGUI QueueText;
@@ -71,7 +72,8 @@ public class GameManager : MonoBehaviour
     bool _sessionStarted;
     bool _gameStart;
 
-    bool _playingMinigame;
+    [HideInInspector]
+    public bool _playingMinigame;
 
     int _playerCounter = -1;
     int _countdownTimer;
@@ -115,9 +117,18 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayers()
     {
+        Debug.Log("RESPAWNING ALL PLAYERS");
         foreach (var item in PlayerList)
         {
-            item.gameObject.GetComponent<CharacterBody2D>().MoveRigidbody(Vector3.zero);
+            item.gameObject.GetComponent<CharacterMotor>().Teleport(Vector3.zero);
+        }
+    }
+
+    public void TeleportPlayers(Vector3 pos)
+    {
+        foreach (var item in PlayerList)
+        {
+            item.gameObject.GetComponent<CharacterMotor>().Teleport(pos);
         }
     }
 
@@ -317,7 +328,7 @@ public class GameManager : MonoBehaviour
         }
 
         GameObject newPlayer = Instantiate(Cats[catToUse], SpawnPoint.position, transform.rotation) as GameObject;
-        Players.Add(deviceID, newPlayer.GetComponent<CharacterHybridBrain>());
+        Players.Add(deviceID, newPlayer.GetComponent<Player>());
 
         newPlayer.GetComponent<Player>().SetPlayerID(_playerCounter);
 

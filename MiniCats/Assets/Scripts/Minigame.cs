@@ -7,10 +7,11 @@ public abstract class Minigame : ScriptableObject
     public string ID;
     public string Description;
     public GameObject Map;
+    public bool RespawnsOnStart = true;
     public int StartTime = 5;
 
     public List<GameObject> MinigameObjects;
-  
+
     public abstract void Tick();
     public abstract void CheckWinCondition(out int winner);
 
@@ -27,7 +28,14 @@ public abstract class Minigame : ScriptableObject
         GameObject map = Instantiate(Map, Vector2.zero, Quaternion.identity);
         MinigameObjects.Add(map);
 
-        GameManager.instance.RespawnPlayers();
+        if (RespawnsOnStart)
+        {
+            GameManager.instance.RespawnPlayers();
+        }
+        else
+        {
+            GameManager.instance.TeleportPlayers(new Vector3(999, 0, 0));
+        }       
     }
 
     public virtual void EndMinigame(int winner, int reward)
@@ -35,9 +43,10 @@ public abstract class Minigame : ScriptableObject
         _playing = false;
 
         GameManager.instance.ShowLobbyMap(true);
+        GameManager.instance.RespawnPlayers();
         CleanUpMinigameObjects();
 
-        if(winner == -1)
+        if (winner == -1)
         {
             Debug.Log("NO ONE WON XD");
         }
@@ -45,7 +54,7 @@ public abstract class Minigame : ScriptableObject
         {
             GameManager.instance.PlayerData[winner].Points += reward;
         }
-        
+
         GameManager.instance.StopMinigame();
         GameManager.instance.ShowWinner(true, winner);
         GameManager.instance.ShowNametags(true);
@@ -56,7 +65,7 @@ public abstract class Minigame : ScriptableObject
 
     public virtual void CleanUpMinigameObjects()
     {
-        if(MinigameObjects.Count > 0)
+        if (MinigameObjects.Count > 0)
         {
             Debug.Log("Cleaning up [" + MinigameObjects.Count + "] minigame object(s).");
 

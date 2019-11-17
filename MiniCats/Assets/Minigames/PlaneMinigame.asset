@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e981e36b2d0f399489a8e9fa13d113cc, type: 3}
+  m_Name: PlaneMinigame
+  m_EditorClassIdentifier: 
+  ID: Plane Game
+  Description: Get balloons, 10 points, shooting another player steals 2 points! :)
+  Map: {fileID: 7361933112669197693, guid: 85382289efbcd724b820f01e6138c634, type: 3}
+  RespawnsOnStart: 0
+  StartTime: 5
+  MinigameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PointsRewardedForWinner: 25
+  GameTime: 30
+  PlayerData:
+  - PlayerID: 0
+    Points: 0
+  - PlayerID: 1
+    Points: 0
