@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
     public CanvasGroup FinalWinner;
     public TextMeshProUGUI FinalWinnerText;
 
+    public TextMeshProUGUI FinalPointsList;
+
     public GameObject LobbyMap;
 
     bool _sessionStarted;
@@ -107,6 +109,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    string scores;
+
+    public void UpdateFinalScore()
+    {
+        scores = "";
+
+        foreach (var item in PlayerData)
+        {
+            scores += "Player " + item.ID + ": " + item.Points + "\n";
+        }
+
+        FinalPointsList.text = scores;
+    }
+
     public void ShowNametags(bool yes)
     {
         foreach (var item in PlayerList)
@@ -134,6 +150,7 @@ public class GameManager : MonoBehaviour
 
     void ShowFinalWinner()
     {
+
         //End the game. Show Winner, THE END
         gameover = true;
         StopGame();
@@ -149,6 +166,8 @@ public class GameManager : MonoBehaviour
                 winnerID = item.ID;
             }
         }
+
+        UpdateFinalScore();
 
         FinalWinner.alpha = 1;
         FinalWinnerText.text = "Final Winner: Player " + winnerID;
@@ -170,6 +189,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        UpdateFinalScore();
         _gameStart = true;
         RoundsLeft = RoundsToPlay;
         _countdownTimer = CountdownTime;
@@ -179,6 +199,7 @@ public class GameManager : MonoBehaviour
 
     void StopGame()
     {
+        UpdateFinalScore();
         _gameStart = false;
         Debug.Log("GAMESTATE: Game Stop");
     }
@@ -199,6 +220,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameover)
             return;
+        UpdateFinalScore();
         CurrentMinigame = Minigames[index];
         MinigameTitle.text = CurrentMinigame.ID;
         MinigameDesc.text = CurrentMinigame.Description;
@@ -208,6 +230,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameover)
             return;
+        UpdateFinalScore();
         _playingMinigame = true;
         CurrentMinigame.Initialize();
         Debug.Log("MINIGAMES: Starting: " + CurrentMinigame.ID);
@@ -215,6 +238,7 @@ public class GameManager : MonoBehaviour
 
     public void StopMinigame()
     {
+        UpdateFinalScore();
         CurrentMinigame = null;
         _playingMinigame = false;
         SpawnQueuedPlayers();
@@ -262,6 +286,8 @@ public class GameManager : MonoBehaviour
         if (gameover)
             StopAllCoroutines();
 
+        UpdateFinalScore();
+
         while (_countdownTimer >= 0)
         {
             Debug.Log("GAMESTATE: Countdown: " + _countdownTimer + ", till the game starts.");
@@ -282,6 +308,8 @@ public class GameManager : MonoBehaviour
     {
         if (gameover)
             StopAllCoroutines();
+
+        UpdateFinalScore();
 
         MinigameCountdown.alpha = 1;
         _countdownTimer = CurrentMinigame.StartTime;

@@ -46,5 +46,5 @@ MonoBehaviour:
   start: 0
   _minX: -15
   _maxX: 15
-  _minSpawnTime: 1
-  _maxSpawnTime: 2
+  _minSpawnTime: 0.75
+  _maxSpawnTime: 1.25

@@ -9,6 +9,8 @@ TagManager:
   - Weird
   - Ice
   - Honey
+  - Balloon
+  - Plane
   layers:
   - Default
   - TransparentFX

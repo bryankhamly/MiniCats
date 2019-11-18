@@ -15,10 +15,11 @@ public class PlanePlayerData
 public class PlaneMinigame : Minigame
 {
     public int PointsRewardedForWinner = 25;
-
+    public int PointsPerBalloon = 10;
+    public int PointsPerSteal = 1;
     public float GameTime = 45;
-    float _gameTimer;
 
+    float _gameTimer;
     int highscore;
 
     public List<PlanePlayerData> PlayerData;
@@ -49,7 +50,12 @@ public class PlaneMinigame : Minigame
             MinigameObjects.Add(lol);
 
             Plane heh = lol.GetComponent<Plane>();
+            heh.ID = i;
             GameManager.instance.PlayerList[i].PlayerPlane = heh;
+
+            lol.GetComponentInChildren<TextMeshPro>().text = i.ToString();
+
+            lol.GetComponentInChildren<SpriteRenderer>().sortingOrder = i;
         }
 
         PlaneTimer = GameObject.Find("PlaneTimer").GetComponent<TextMeshProUGUI>();
@@ -73,6 +79,20 @@ public class PlaneMinigame : Minigame
         PlayerListPoints.text = scores;
     }
 
+    public void RewardPoints(int id)
+    {
+        PlayerData[id].Points += PointsPerBalloon;
+        UpdateScores();
+    }
+
+    public void StealPoints(int victim, int shooter)
+    {
+        PlayerData[victim].Points -= PointsPerSteal;
+        GameManager.instance.PlayerList[victim].PlayerPlane.Mad();
+        PlayerData[shooter].Points += PointsPerSteal;
+        UpdateScores();
+    }
+
     public override void Tick()
     {
         if (_playing)
@@ -91,7 +111,17 @@ public class PlaneMinigame : Minigame
 
     public override void CheckWinCondition(out int winnner)
     {
-        winnner = 1;
+        winnner = 999;
+        int max = 0;
+
+        foreach (var item in PlayerData)
+        {
+            if(item.Points > max)
+            {
+                max = item.Points;
+                winnner = item.PlayerID;
+            }
+        } 
     }
 
     public override void EndMinigame(int winner, int reward)

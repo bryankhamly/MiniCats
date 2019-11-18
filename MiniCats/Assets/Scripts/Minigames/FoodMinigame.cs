@@ -28,13 +28,17 @@ public class FoodMinigame : Minigame
 
     int highscore;
 
+    string scores;
+
     //UI
     TextMeshProUGUI FoodTimer;
+    TextMeshProUGUI PlayerListPoints;
 
     public override void Initialize()
     {
         base.Initialize();
         FoodTimer = GameObject.Find("FoodTimer").GetComponent<TextMeshProUGUI>();
+        PlayerListPoints = GameObject.Find("PlayerListPointsFood").GetComponent<TextMeshProUGUI>();
         FoodInit();
     }
 
@@ -62,7 +66,21 @@ public class FoodMinigame : Minigame
 
         GameManager.instance.FoodCanvas.alpha = 1;
 
+        UpdateScores();
+
         Debug.Log("FOODMINIGAME: INIT");
+    }
+
+    void UpdateScores()
+    {
+        scores = "";
+
+        foreach (var item in PlayerData)
+        {
+            scores += "Player " + item.PlayerID + ": " + item.Points + "\n";
+        }
+
+        PlayerListPoints.text = scores;
     }
 
     public override void Tick()
@@ -121,6 +139,7 @@ public class FoodMinigame : Minigame
     public void GivePoints(int playerID, int value)
     {
         PlayerData[playerID].Points += value;
+        UpdateScores();
         Debug.Log("FOODMINIGAME:" + value + " POINTS GIVEN TO PLAYER" + playerID);
     }
 }

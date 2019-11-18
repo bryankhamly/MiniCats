@@ -16,8 +16,15 @@ MonoBehaviour:
   Description: Whoever gets the most food in 45 seconds is the winner! Press A to
     jump.
   Map: {fileID: 8140628813786518405, guid: dbf1e9241bcf7ad40813ca7721d67fb7, type: 3}
+  RespawnsOnStart: 1
   StartTime: 8
   MinigameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -34,18 +41,9 @@ MonoBehaviour:
   PlayerData:
   - PlayerName: Player 0
     PlayerID: 0
-    Points: 0
+    Points: 10
   - PlayerName: Player 1
     PlayerID: 1
-    Points: 2
-  - PlayerName: Player 2
-    PlayerID: 2
-    Points: 0
-  - PlayerName: Player 3
-    PlayerID: 3
-    Points: 0
-  - PlayerName: Player 4
-    PlayerID: 4
-    Points: 2
-  PointsRewardedForWinner: 25
-  GameTime: 10
+    Points: 6
+  PointsRewardedForWinner: 1
+  GameTime: 45
