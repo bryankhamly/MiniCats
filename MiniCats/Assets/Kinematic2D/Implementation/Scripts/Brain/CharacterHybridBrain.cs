@@ -148,6 +148,12 @@ namespace Lightbug.Kinematic2D.Implementation
                 case "aFalse":
                     characterAction.jumpReleased = true;
                     break;
+                case "downTrue":
+                    vertical = -1;
+                    break;
+                case "downFalse":
+                    vertical = 0;
+                    break;
             }
         }
 

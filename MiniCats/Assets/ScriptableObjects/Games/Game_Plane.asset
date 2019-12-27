@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd851e7dabac7a468cfb9331033521c, type: 3}
+  m_Name: Game_Plane
+  m_EditorClassIdentifier: 
+  ID: Catfight!
+  Description: Fly around, earn pts shooting balloons. Shoot players to steal their
+    points.
+  MapPrefab: {fileID: 7361933112669197693, guid: 85382289efbcd724b820f01e6138c634,
+    type: 3}
+  Reward: 100
+  MinigameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Players:
+  - {fileID: 0}
+  - {fileID: 0}
+  GameTime: 60
+  PointsPerBallon: 10
+  PointsPerSteal: 1

@@ -32,13 +32,13 @@ public class FoodSpawner : MonoBehaviour
     void SpawnFood()
     {
         _spawnTimer = 0;
-        FoodMinigame food = GameManager.instance.CurrentMinigame as FoodMinigame;
+        FoodGame food = Minicats.instance.CurrentMinigame as FoodGame;
 
-        int rand = Random.Range(0, food.FoodPrefabs.Count - 1);
+        int rand = Random.Range(0, food.FoodPrefabs.Count);
         GameObject randFood = food.FoodPrefabs[rand];
 
         GameObject newFood = Instantiate(randFood, GetRandomSpawnPoint(), Quaternion.identity);
-        GameManager.instance.CurrentMinigame.MinigameObjects.Add(newFood);
+        Minicats.instance.CurrentMinigame.MinigameObjects.Add(newFood);
     }
 
     Vector2 GetRandomSpawnPoint()

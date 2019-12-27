@@ -47,7 +47,7 @@ public class BalloonSpawner : MonoBehaviour
         Balloon b = bal.GetComponent<Balloon>();
         b.Direction = Dir;
 
-        GameManager.instance.CurrentMinigame.MinigameObjects.Add(bal);
+        Minicats.instance.CurrentMinigame.MinigameObjects.Add(bal);
     }
 
     private void OnDrawGizmos()

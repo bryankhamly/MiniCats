@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb19b903a7603048832b4c2c5e631f1, type: 3}
+  m_Name: Game_Food
+  m_EditorClassIdentifier: 
+  ID: Food Collect!
+  Description: Collect food, but avoid cucumbers!
+  MapPrefab: {fileID: 1105966167246316097, guid: 0963f0fb0a4ae4449ba82f16e67c84e9,
+    type: 3}
+  Reward: 100
+  MinigameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Players:
+  - {fileID: 0}
+  - {fileID: 0}
+  FoodSpawnerPrefab: {fileID: 4897339964048592589, guid: 3e10f29d5929d25419082473cdfd697b,
+    type: 3}
+  FoodSpawnerLocation: {x: 0, y: 10, z: 0}
+  FoodPrefabs:
+  - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
+  - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
+  - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
+  - {fileID: 4750028456623054257, guid: c3861abd94de1e54fafc91e2ec6419d3, type: 3}
+  - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
+  - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
+  GameTime: 60

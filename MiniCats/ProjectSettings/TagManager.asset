@@ -11,6 +11,8 @@ TagManager:
   - Honey
   - Balloon
   - Plane
+  - Spawn
+  - Reset
   layers:
   - Default
   - TransparentFX

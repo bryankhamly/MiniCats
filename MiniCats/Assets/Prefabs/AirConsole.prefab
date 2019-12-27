@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2307580683246564268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2307580683246564269}
+  - component: {fileID: 2307580683246564266}
+  - component: {fileID: 2307580683246564267}
+  - component: {fileID: 2307580683246564264}
+  - component: {fileID: 2307580683246564265}
+  m_Layer: 0
+  m_Name: AirConsole
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2307580683246564269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307580683246564268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2307580683246564266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307580683246564268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d83ebce05ad74683fd3228dde9e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  browserStartMode: 0
+  controllerHtml: {fileID: 4900000, guid: 991233e3c39069b49955ecd3761d8cb1, type: 3}
+  autoScaleCanvas: 1
+--- !u!114 &2307580683246564267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307580683246564268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75d13a185642004d983d7c431d61909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinicatsPlayerPrefab: {fileID: 1598082675540107687, guid: 8e9f607d8ec0b1b4091081c5ef96038b,
+    type: 3}
+  LobbyMapPrefab: {fileID: 134065593986801052, guid: 4b2b65fa4ae261442912f91a63cac4f1,
+    type: 3}
+  PlayerColors: {fileID: 11400000, guid: 76306344dbc5a4140903ef7714cdbbbf, type: 2}
+  CatCollection: {fileID: 11400000, guid: e5e22abebb286fb44b81de6808133750, type: 2}
+  MinimumPlayers: 2
+  MaximumPlayers: 20
+  RoundsToPlay: 5
+  TimeTillMinigameStart: 5
+  DebugLogs: 1
+  SessionStart: 0
+  GameStart: 0
+  EnoughPlayers: 0
+  Gamestate: 0
+  CurrentMinigame: {fileID: 0}
+  MinigameIndex: -1
+  RoundsLeft: -1
+  MinigamesList:
+  - {fileID: 11400000, guid: f220f3f85f672ca44aa556d37a50ef3c, type: 2}
+  - {fileID: 11400000, guid: 8d6b70dbe2b186c439f1f4e88fd843c0, type: 2}
+  - {fileID: 11400000, guid: f220f3f85f672ca44aa556d37a50ef3c, type: 2}
+  - {fileID: 11400000, guid: 8d6b70dbe2b186c439f1f4e88fd843c0, type: 2}
+  - {fileID: 11400000, guid: f220f3f85f672ca44aa556d37a50ef3c, type: 2}
+  LobbyCats: []
+--- !u!114 &2307580683246564264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307580683246564268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5729ade232975844b8c28b6467131be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoundsToPlay: {fileID: 0}
+  UpButton: {fileID: 0}
+  DownButton: {fileID: 0}
+  PlayButton: {fileID: 0}
+--- !u!114 &2307580683246564265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307580683246564268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06702818134345f40982902d471706de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NewGame: {fileID: 0}
+  WaitForPlayers: {fileID: 0}
+  _uiLoadMinigame: {fileID: 0}
+  _uiFood: {fileID: 0}
+  _uiPlane: {fileID: 0}
+  _uiScoreboard: {fileID: 0}
+  _uiGameOver: {fileID: 0}

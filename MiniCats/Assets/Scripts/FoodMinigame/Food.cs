@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    public FoodMinigame _foodMinigame;
+    public FoodGame _foodMinigame;
 
     public int PointValue = 5;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.GetComponentInParent<Player>())
+        if (collision.collider.GetComponentInParent<ControlPlayer>())
         {
-            int id = collision.collider.GetComponentInParent<Player>().PlayerID;
-            _foodMinigame.GivePoints(id, PointValue);
+            FoodPlayer player = collision.collider.GetComponent<FoodPlayer>();
+            _foodMinigame.GivePoints(player, PointValue);
             _foodMinigame.MinigameObjects.Remove(gameObject);
             Destroy(gameObject);
         }

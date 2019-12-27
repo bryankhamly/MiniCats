@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312cf2a00928cf14a9e3d8deb20b209d, type: 3}
+  m_Name: Female
+  m_EditorClassIdentifier: 
+  CatID: Female
+  LobbyCat: {fileID: 1786041449017434320, guid: 87a2c8d6fa41cbf429171fafbb774d44,
+    type: 3}
+  FoodCat: {fileID: 5525977189164913800, guid: 563404d64dfff434db6088bd03e9e0fb, type: 3}
+  PlaneCat: {fileID: 3327339395071164470, guid: 0f19ebcfd6aaf284a8936b00b921c3fc,
+    type: 3}
+  ColorBoxCat: {fileID: 8337620290265368556, guid: 6e9e70096224ac04aa8ec093f103c255,
+    type: 3}
+  DodgeCat: {fileID: 6511429114905446714, guid: efed4e79558a6f444b2204ddbaafa70d,
+    type: 3}

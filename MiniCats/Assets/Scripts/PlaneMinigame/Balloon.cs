@@ -6,16 +6,16 @@ public class Balloon : MonoBehaviour
 {
     public float Speed;
     public Vector2 Direction;
-    public PlaneMinigame PlaneGame;
+    public PlaneGame PlaneGame;
 
     void Update()
     {
         transform.Translate(Direction * Speed * Time.deltaTime);
     }
 
-    public void Pop(int id)
+    public void Pop(PlanePlayer player)
     {
-        PlaneGame.RewardPoints(id);
+        PlaneGame.RewardPoints(player);
         Destroy(gameObject);
     }
 }

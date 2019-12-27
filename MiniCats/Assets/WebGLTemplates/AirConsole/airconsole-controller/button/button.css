@@ -1,15 +1,30 @@
-.button-300-150 {
-    background-image: url('button-300-150.png');
+.button-300-150-a {
+    background-image: url('button-300-150a.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 50% 50%;
 }
 
-.button-300-150.button-active {
-    background-image: url('button-300-150-active.png');
+.button-300-150-b {
+    background-image: url('button-300-150b.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
 
-.button-300-150.button-active .button-text {
+.button-300-150-a.button-active {
+    background-image: url('button-300-150a-active.png');
+}
+
+.button-300-150-a.button-active .button-text {
+    color: black;
+}
+
+.button-300-150-b.button-active {
+    background-image: url('button-300-150b-active.png');
+}
+
+.button-300-150-b.button-active .button-text {
     color: black;
 }
 
@@ -28,15 +43,40 @@
     color: black;
 }
 
-.button-300-300 {
-    background-image: url('button-300-300.png');
+.button-300-300A {
+    background-image: url('button-300-300A.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 50% 50%;
 }
 
-.button-300-300.button-active {
-    background-image: url('button-300-300-active.png');
+.button-300-300A {
+    background-image: url('button-300-300A.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.button-300-300A.button-active {
+    background-image: url('button-300-300A-active.png');
+}
+
+.button-300-300B {
+    background-image: url('button-300-300B.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.button-300-300B {
+    background-image: url('button-300-300B.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.button-300-300B.button-active {
+    background-image: url('button-300-300B-active.png');
 }
 
 .button-300-300.button-active .button-text {

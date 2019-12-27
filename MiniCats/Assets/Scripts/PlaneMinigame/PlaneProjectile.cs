@@ -6,7 +6,9 @@ public class PlaneProjectile : MonoBehaviour
 {
     public int _shooterID;
     public float _speed;
-    public PlaneMinigame PlaneGame;
+    public PlaneGame PlaneGame;
+
+    public PlanePlayer _shooter;
 
     void Start()
     {
@@ -16,7 +18,7 @@ public class PlaneProjectile : MonoBehaviour
     IEnumerator Bye()
     {
         yield return new WaitForSeconds(3);
-        GameManager.instance.CurrentMinigame.MinigameObjects.Remove(gameObject);
+        Minicats.instance.CurrentMinigame.MinigameObjects.Remove(gameObject);
         Destroy(gameObject);
     }
 
@@ -41,7 +43,7 @@ public class PlaneProjectile : MonoBehaviour
         if (collision.CompareTag("Balloon"))
         {
             //Reward
-            collision.gameObject.GetComponent<Balloon>().Pop(_shooterID);
+            collision.gameObject.GetComponent<Balloon>().Pop(_shooter);
             Destroy(gameObject);
         }
     }

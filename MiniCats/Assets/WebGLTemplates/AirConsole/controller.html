@@ -36,11 +36,19 @@
             top: 0%;
         }
 
-        .button-300-150 {
+        .button-300-150-a {
             position: absolute;
             height: 50%;
             width: 40%;
-            right: 0px;
+            right: 10px;
+
+        }
+
+        .button-300-150-b {
+            position: absolute;
+            height: 50%;
+            width: 40%;
+            right: 10px;
 
         }
 
@@ -127,19 +135,39 @@
                 <div class="dpad-arrow dpad-arrow-right"></div>
             </div>
         </div>
-        <div id="a" class="button-300-150">
+        <div id="a" class="button-300-150-a">
             <div class="button-a-text">
-                <div class="button-text">A</div>
+                <div class="button-text"></div>
             </div>
         </div>
-        <div id="b" class="button-300-150">
+        <div id="b" class="button-300-150-b">
             <div class="button-b-text">
-                <div class="button-text">B</div>
+                <div class="button-text"></div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
+
+		var changeColor = function(id) {
+		document.body.style.backgroundColor = id;
+		};
+
         var airconsole = new AirConsole({"orientation": "landscape", "synchronize_time" : "true"});
+
+		airconsole.onCustomDeviceStateChange = function(device_id, data)
+		{
+			var myDevice = airconsole.getDeviceId();
+
+			var wtf = data["color"];
+			var splitXD = wtf.split('-');
+			var color = splitXD[splitXD.length - 1];
+			var dankID = splitXD[0];
+
+			if(myDevice == dankID)
+			{
+				changeColor(color);
+			}
+		};
 
         new DPad("dpad", {
             "directionchange": function (key, pressed) {

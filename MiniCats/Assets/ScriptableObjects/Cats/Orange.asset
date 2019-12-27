@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312cf2a00928cf14a9e3d8deb20b209d, type: 3}
+  m_Name: Orange
+  m_EditorClassIdentifier: 
+  CatID: Orange
+  LobbyCat: {fileID: 3193143619013208514, guid: 103e57635df1f6548ba6f841a244077c,
+    type: 3}
+  FoodCat: {fileID: 2444657742731386487, guid: d171e78a018c92c439559b331657eba4, type: 3}
+  PlaneCat: {fileID: 7303447827567592588, guid: 44be180d0c27f854c91595087cf11543,
+    type: 3}
+  ColorBoxCat: {fileID: 5935912814265028858, guid: 1c491227fd726dd48996d6a528c43d74,
+    type: 3}
+  DodgeCat: {fileID: 5154372196540550753, guid: 5265318d55cb8474a9611356b81a9d2c,
+    type: 3}

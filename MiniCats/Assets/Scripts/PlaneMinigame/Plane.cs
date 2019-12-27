@@ -19,9 +19,12 @@ public class Plane : MonoBehaviour
     SpriteRenderer _sprite;
     bool hit;
 
+    public PlanePlayer player;
+
     private void Awake()
     {
-        _sprite = GetComponentInChildren<SpriteRenderer>();    
+        _sprite = GetComponentInChildren<SpriteRenderer>();
+        player = GetComponent<PlanePlayer>();
     }
 
     void Update()
@@ -58,7 +61,8 @@ public class Plane : MonoBehaviour
         GameObject lol = Instantiate(Projectile, ShootPoint.position, ShootPoint.rotation);
         PlaneProjectile p = lol.GetComponent<PlaneProjectile>();
         p._shooterID = ID;
-        GameManager.instance.CurrentMinigame.MinigameObjects.Add(lol);
+        p._shooter = player;
+        Minicats.instance.CurrentMinigame.MinigameObjects.Add(lol);
     }
 
     public void ButtonInput(string input)
