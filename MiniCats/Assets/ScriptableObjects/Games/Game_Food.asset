@@ -94,6 +94,51 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Players:
   - {fileID: 0}
   - {fileID: 0}
@@ -103,8 +148,9 @@ MonoBehaviour:
   FoodPrefabs:
   - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
   - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
-  - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
+  - {fileID: 4090638681695096790, guid: a7f6df8e0f536994c96644b73488540f, type: 3}
   - {fileID: 4750028456623054257, guid: c3861abd94de1e54fafc91e2ec6419d3, type: 3}
   - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
-  - {fileID: 4544887203781468377, guid: 1be6c9c6d1572414b8f6f9d6ff926916, type: 3}
+  - {fileID: 4090638681695096790, guid: a7f6df8e0f536994c96644b73488540f, type: 3}
+  - {fileID: 4090638681695096790, guid: a7f6df8e0f536994c96644b73488540f, type: 3}
   GameTime: 60

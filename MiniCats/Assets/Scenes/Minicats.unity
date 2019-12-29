@@ -178,7 +178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38603419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -15.54, z: 0}
+  m_LocalPosition: {x: 0, y: -24.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -822,11 +822,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AirConsole
       objectReference: {fileID: 0}
-    - target: {fileID: 2307580683246564268, guid: d17219215304f1348b5536fb230c0a34,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2307580683246564269, guid: d17219215304f1348b5536fb230c0a34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -882,50 +877,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2307580683246564266, guid: d17219215304f1348b5536fb230c0a34,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307580683246564267, guid: d17219215304f1348b5536fb230c0a34,
-        type: 3}
-      propertyPath: MinigamesList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307580683246564267, guid: d17219215304f1348b5536fb230c0a34,
-        type: 3}
-      propertyPath: GameCollection
-      value: 
-      objectReference: {fileID: 11400000, guid: 758c8562ea4737444ad9fb956235dd4c,
-        type: 2}
-    - target: {fileID: 2307580683246564267, guid: d17219215304f1348b5536fb230c0a34,
-        type: 3}
-      propertyPath: RoundsToPlay
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2307580683246564267, guid: d17219215304f1348b5536fb230c0a34,
         type: 3}
       propertyPath: DebugMinigames
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2307580683246564267, guid: d17219215304f1348b5536fb230c0a34,
         type: 3}
       propertyPath: MinigamesList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: cedfbf958d9282c488095515379574d1,
+      objectReference: {fileID: 11400000, guid: 1347701fe4db7734c84d34d713e96503,
         type: 2}
-    - target: {fileID: 2307580683246564267, guid: d17219215304f1348b5536fb230c0a34,
-        type: 3}
-      propertyPath: MinigamesList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: f220f3f85f672ca44aa556d37a50ef3c,
-        type: 2}
-    - target: {fileID: 2307580683246564267, guid: d17219215304f1348b5536fb230c0a34,
-        type: 3}
-      propertyPath: LobbyMapPrefab
-      value: 
-      objectReference: {fileID: 5083688527024242308, guid: 50050c3b4cc85134694f4dcaa038367c,
-        type: 3}
     - target: {fileID: 2307580683246564264, guid: d17219215304f1348b5536fb230c0a34,
         type: 3}
       propertyPath: RoundsToPlay
@@ -1115,6 +1077,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2951715482329914174, guid: 4446c2af3f428ec49bc6274dee76eceb,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2568791354860182405, guid: 4446c2af3f428ec49bc6274dee76eceb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.8999939
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4446c2af3f428ec49bc6274dee76eceb, type: 3}
 --- !u!1001 &2997243461362110263
@@ -1238,6 +1210,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997243461851288451, guid: 66a51263650b5cc43b2063cdaeb611e6,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165497461344671276, guid: 66a51263650b5cc43b2063cdaeb611e6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -16.199951
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165497461344671276, guid: 66a51263650b5cc43b2063cdaeb611e6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 95.599976
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66a51263650b5cc43b2063cdaeb611e6, type: 3}
@@ -1367,6 +1354,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Alpha
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330006362109306550, guid: ff29cad98bd656d43b04b8ce5267fe1d,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff29cad98bd656d43b04b8ce5267fe1d, type: 3}
@@ -1511,6 +1503,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6756066572135230033, guid: 99ec7f9315daf2f43b94ced14033430d,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6756066572135230037, guid: 99ec7f9315daf2f43b94ced14033430d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1630,10 +1627,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_NewGame
       objectReference: {fileID: 0}
-    - target: {fileID: 6972600488909283382, guid: 3f225fef4a04d28449a373859d3fdbd9,
+    - target: {fileID: 6972600488909283389, guid: 3f225fef4a04d28449a373859d3fdbd9,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6972600488909283378, guid: 3f225fef4a04d28449a373859d3fdbd9,
         type: 3}
@@ -1739,6 +1736,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058726442177873434, guid: 3f225fef4a04d28449a373859d3fdbd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058726442177873434, guid: 3f225fef4a04d28449a373859d3fdbd9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0024414062
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f225fef4a04d28449a373859d3fdbd9, type: 3}

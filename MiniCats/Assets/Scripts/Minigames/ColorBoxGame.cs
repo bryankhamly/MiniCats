@@ -17,7 +17,7 @@ public class ColorBoxGame : Game
         CanvasManager.instance._uiColorBox.MyCanvasGroup.alpha = 0;
         List<PlayerStanding> PlayerStandings = new List<PlayerStanding>();
 
-        foreach (ColorBoxPlayer player in Players)
+        foreach (var player in Players)
         {
             int pts = 0;
 
@@ -30,33 +30,32 @@ public class ColorBoxGame : Game
             }
 
             PlayerStanding heh = new PlayerStanding(player.PlayerID, pts);
-            PlayerStandings.Add(heh);
-
-            PlayerStanding[] sorted = PlayerStandings.OrderByDescending(c => c.Points).ToArray();
-
-            CanvasManager.instance._uiScoreboard.GetGameResults(sorted, Reward);
-
-            //1st Place - Gets full points.
-            Minicats.instance.RewardPlayer(sorted[0].ID, Reward);
-
-            int splitReward = Reward;
-
-            for (int i = 1; i < sorted.Length; i++)
-            {
-                splitReward = splitReward / 2;
-
-                if (splitReward < 2)
-                {
-                    //No more rewards.
-                    Minicats.instance.RewardPlayer(sorted[i].ID, 1);
-                }
-                else
-                {
-                    Minicats.instance.RewardPlayer(sorted[i].ID, splitReward);
-                }
-            }
+            PlayerStandings.Add(heh);          
         }
 
+        PlayerStanding[] sorted = PlayerStandings.OrderByDescending(c => c.Points).ToArray();
+
+        CanvasManager.instance._uiScoreboard.GetGameResults(sorted, Reward);
+
+        //1st Place - Gets full points.
+        Minicats.instance.RewardPlayer(sorted[0].ID, Reward);
+
+        int splitReward = Reward;
+
+        for (int i = 1; i < sorted.Length; i++)
+        {
+            splitReward = splitReward / 2;
+
+            if (splitReward < 2)
+            {
+                //No more rewards.
+                Minicats.instance.RewardPlayer(sorted[i].ID, 1);
+            }
+            else
+            {
+                Minicats.instance.RewardPlayer(sorted[i].ID, splitReward);
+            }
+        }
     }
 
     public override void InitPlayers()
